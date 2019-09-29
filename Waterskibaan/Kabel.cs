@@ -45,7 +45,8 @@ namespace Waterskibaan
 
                 if (lijn.PositieOpDeKabel == 10)
                 {
-                    VerwijderLijnVanKabel();
+                    lijn.PositieOpDeKabel = 0;
+                    lijn.Sporter.AantalRondenNogTeGaan--;
                 }
             }
             /*if (_lijnen.Last.Value.PositieOpDeKabel == 10)
@@ -58,16 +59,17 @@ namespace Waterskibaan
         }
         public Lijn VerwijderLijnVanKabel()
         {
-
-            foreach (Lijn lijn in _lijnen)
-            {
-                if (lijn.PositieOpDeKabel == 10)
+            
+                foreach (Lijn lijn in _lijnen)
                 {
-                    _lijnen.Remove(lijn);
-                    return lijn;
+                    if (lijn.PositieOpDeKabel == 10 && lijn.Sporter.AantalRondenNogTeGaan == 1)
+                    {
+                        _lijnen.Remove(lijn);
+                        return lijn;
+                    }
                 }
-            }
-            return null;
+                return null;
+            
 
             /*if (_lijnen.Last.Value.PositieOpDeKabel == 9)
             {
