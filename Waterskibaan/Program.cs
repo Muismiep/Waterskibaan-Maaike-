@@ -6,14 +6,32 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
             //TestOpdracht2();
             //TestOpdracht3();
+            TestOpdracht8();
           
         }
+
+        private static void TestOpdracht8()
+        {
+            var waterskibaan = new Waterskibaan();
+            var sp = new Sporter() { Skies = new Skies(), Zwemvest = new Zwemvest() };
+
+            try
+            {
+                waterskibaan.SporterStart(sp);
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Een sporter behoort een Zwemvest EN Skies te hebben!{ e.Message}");
+            }
+        }
+
+
         /* private static void TestOpdracht2()
          {
              Kabel kabel = new Kabel();

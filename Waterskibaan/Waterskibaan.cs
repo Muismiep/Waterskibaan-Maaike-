@@ -25,6 +25,11 @@ namespace Waterskibaan
 
         public void SporterStart(Sporter sp)
         {
+            if (sp.Zwemvest == null || sp.Skies == null)
+            {
+                throw new Exception("Een sporter behoort een Zwemvest EN Skies te hebben!");
+            }
+
             if (_kabel.IsStartPositieLeeg() == true)
             {
                 var rand = new Random();
@@ -33,7 +38,7 @@ namespace Waterskibaan
                 var getLijn = _lijnenVoorraad.VerwijderEersteLijn();
 
                 getLijn.Sporter = sp;
-
+                Console.WriteLine("test poke");
 
                 _kabel.NeemLijnInGebruik(getLijn);
             }
