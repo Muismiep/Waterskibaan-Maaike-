@@ -23,9 +23,9 @@ namespace Waterskibaan
             }
             else
             {
-                _lijnen.Dequeue();
+                return _lijnen.Dequeue();
             }
-            return null;
+            
         }
 
         public int GetAantalLijnen()
