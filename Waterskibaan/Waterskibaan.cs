@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class Waterskibaan
+    public class Waterskibaan
     {
         private LijnenVoorraad _lijnenVoorraad;
         public Kabel _kabel;
@@ -22,6 +22,28 @@ namespace Waterskibaan
                 _lijnenVoorraad.LijnToevoegenAanRij(new Lijn());
             }
         }
+
+        public void SporterStart(Sporter sp)
+        {
+            if (_kabel.IsStartPositieLeeg() == true)
+            {
+                var rand = new Random();
+                int aantalRondjes = rand.Next(1, 2);
+                sp.AantalRondenNogTeGaan = aantalRondjes;
+                var getLijn = _lijnenVoorraad.VerwijderEersteLijn();
+
+                getLijn.Sporter = sp;
+
+
+                _kabel.NeemLijnInGebruik(getLijn);
+            }
+            else
+            {
+                return;
+            }
+
+        }
+
         public void VerplaatsKabel()
         {
             _kabel.VerschuifLijnen();
