@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Media;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,7 +54,7 @@ namespace Waterskibaan
             var rand = new Random();
 
             // tijdelijke oplossing, word vervangen in opdracht 13
-            Kledingkleur = Color.FromRgb((byte)rand.Next(255), (byte)rand.Next(255), (byte)rand.Next(255));
+            Kledingkleur = Color.FromArgb((byte)rand.Next(255), (byte)rand.Next(255), (byte)rand.Next(255));
 
         }
     }

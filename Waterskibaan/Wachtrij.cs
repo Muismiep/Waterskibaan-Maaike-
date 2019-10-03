@@ -32,7 +32,7 @@ namespace Waterskibaan
             var amount = aantal;
             if (amount > Queue.Count)
             {
-                throw new ArgumentOutOfRangeException("Number of leavers can't be higher than the amount of sperters in the list");
+                throw new ArgumentOutOfRangeException("Number of leavers can't be higher than the amount of sporters in the list");
             }
             var leavers = new List<Sporter>();
 

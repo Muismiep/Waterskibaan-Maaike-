@@ -12,11 +12,12 @@ namespace Waterskibaan
         {
             //TestOpdracht2();
             //TestOpdracht3();
-            TestOpdracht8();
-          
+            //TestOpdracht8();
+            var gam = new Game();
+            gam.Initialize();
         }
 
-        private static void TestOpdracht8()
+        /*private static void TestOpdracht8()
         {
             var waterskibaan = new Waterskibaan();
             var sp = new Sporter() { Skies = new Skies(), Zwemvest = new Zwemvest() };
@@ -29,7 +30,7 @@ namespace Waterskibaan
             {
                 throw new Exception($"Een sporter behoort een Zwemvest EN Skies te hebben!{ e.Message}");
             }
-        }
+        }*/
 
 
         /* private static void TestOpdracht2()
