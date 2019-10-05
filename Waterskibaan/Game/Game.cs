@@ -11,10 +11,16 @@ namespace Waterskibaan
     {
         private static Timer gameTimer;
         private Waterskibaan waterskiBaan;
+        private WachtrijInstructie wachtrijInstructie;
+        //TODO voeg andere wachtrijn toe
+
+        public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
+        public event NieuweBezoekerHandler NieuweBezoeker;
+
         public void Initialize()
         {
             waterskiBaan = new Waterskibaan();
-            gameTimer = new Timer(1000);
+            gameTimer = new Timer(3000);
             gameTimer.Elapsed += VoegSporterToe;
             gameTimer.AutoReset = true;
             gameTimer.Enabled = true;
@@ -33,9 +39,13 @@ namespace Waterskibaan
         private void VoegSporterToe(object source, ElapsedEventArgs e)
         {
             Sporter sp = new Sporter() { Skies = new Skies(), Zwemvest = new Zwemvest() };
+            NieuweBezoeker(new NieuweBezoekerArgs { sp = sp });
+
+
             waterskiBaan.SporterStart(sp);
             waterskiBaan.VerplaatsKabel();
             Console.WriteLine(waterskiBaan);
         }
     }
 }
+//handler aanmaken

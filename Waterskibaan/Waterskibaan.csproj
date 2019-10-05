@@ -44,28 +44,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="IMoves.cs" />
-    <Compile Include="InstructieGroep.cs" />
-    <Compile Include="Kabel.cs" />
-    <Compile Include="Lijn.cs" />
-    <Compile Include="LijnenVoorraad.cs" />
-    <Compile Include="MoveCollection.cs" />
-    <Compile Include="OpEenBeen.cs" />
-    <Compile Include="Salto.cs" />
-    <Compile Include="Skies.cs" />
-    <Compile Include="Sporter.cs" />
+    <Compile Include="Game\Game.cs" />
+    <Compile Include="Moves\IMoves.cs" />
+    <Compile Include="Game\Wachtrij\InstructieGroep.cs" />
+    <Compile Include="Lijnonderhoud\Kabel.cs" />
+    <Compile Include="Lijnonderhoud\Lijn.cs" />
+    <Compile Include="Lijnonderhoud\LijnenVoorraad.cs" />
+    <Compile Include="Moves\MoveCollection.cs" />
+    <Compile Include="Game\NieuweBezoekerArgs.cs" />
+    <Compile Include="Moves\OpEenBeen.cs" />
+    <Compile Include="Moves\Salto.cs" />
+    <Compile Include="Sporter\Skies.cs" />
+    <Compile Include="Sporter\Sporter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Springen.cs" />
-    <Compile Include="Wachtrij.cs" />
-    <Compile Include="WachtrijInstructie.cs" />
-    <Compile Include="WachtrijStarten.cs" />
-    <Compile Include="Waterskibaan.cs" />
-    <Compile Include="Zwemvest.cs" />
+    <Compile Include="Moves\Springen.cs" />
+    <Compile Include="Game\Wachtrij\Wachtrij.cs" />
+    <Compile Include="Game\Wachtrij\WachtrijInstructie.cs" />
+    <Compile Include="Game\Wachtrij\WachtrijStarten.cs" />
+    <Compile Include="Game\Waterskibaan.cs" />
+    <Compile Include="Sporter\Zwemvest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
