@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class WachtrijStarten : Wachtrij
+    public class NieuweBezoekerArgs
     {
-        public override int MaxLengteRij => 20;
+        public Sporter Sporter { get; set;}
+        
     }
 }

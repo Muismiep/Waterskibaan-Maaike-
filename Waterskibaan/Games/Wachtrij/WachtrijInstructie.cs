@@ -9,5 +9,10 @@ namespace Waterskibaan
     public class WachtrijInstructie : Wachtrij
     {
         public override int MaxLengteRij => 100;
+
+        public override string ToString()
+        {
+            return base.ToString() + "instructie wachtrij.";
+        }
     }
 }

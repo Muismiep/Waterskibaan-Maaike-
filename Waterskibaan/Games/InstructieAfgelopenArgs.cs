@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Waterskibaan
+namespace Waterskibaan.Games
 {
-    public class NieuweBezoekerArgs
+    public class InstructieAfgelopenArgs
     {
-        public Sporter sp { get; set;}
+        public List<Sporter> Sporters { get; set; }
     }
 }
