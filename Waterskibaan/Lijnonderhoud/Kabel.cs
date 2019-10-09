@@ -9,7 +9,7 @@ namespace Waterskibaan
 {
     public class Kabel
     {
-        private LinkedList<Lijn> _lijnen = new LinkedList<Lijn>() { };
+        internal LinkedList<Lijn> _lijnen = new LinkedList<Lijn>() { };
 
         public bool IsStartPositieLeeg()
         {

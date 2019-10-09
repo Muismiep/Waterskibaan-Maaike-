@@ -16,6 +16,13 @@ namespace Waterskibaan
         private Color kledingKleur;
         private List<IMoves> moves;
         private int aantalBehaaldePunten;
+        public IMoves HuidigeMove;
+
+        public int AantalbehaaldePunten
+        {
+            get => aantalBehaaldePunten;
+            set => aantalBehaaldePunten = value;
+        }
 
         public Zwemvest Zwemvest
         {

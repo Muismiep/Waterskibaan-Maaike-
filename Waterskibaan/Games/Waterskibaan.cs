@@ -10,6 +10,7 @@ namespace Waterskibaan
     {
         private LijnenVoorraad _lijnenVoorraad;
         public Kabel _kabel = new Kabel();
+        private Random _random = new Random();
 
         public Waterskibaan()
         {
@@ -52,6 +53,19 @@ namespace Waterskibaan
             if (verwijderdelijn != null)
             {
                 _lijnenVoorraad.LijnToevoegenAanRij(verwijderdelijn);
+            }
+        }
+        public void MoveUitvoeren()
+        {
+            foreach (var lijn in _kabel._lijnen)
+            {
+                var sporter = lijn.Sporter;
+
+                if (sporter.Moves.Count > 0 && _random.Next(100) > 75)
+                {
+                    sporter.HuidigeMove = sporter.Moves.Last();
+                    sporter.Moves.RemoveAt(sporter.Moves.Count - 1);
+                }
             }
         }
 

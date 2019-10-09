@@ -10,16 +10,18 @@ namespace Waterskibaan.Games
 {
     public class Game
     {
+        //aanmaken private props
         private static Timer gameTimer;
         private int secondsSinceLastBezoeker;
         private int secondsSinceLastInstructie;
         private int secondsSinceLijnenVerplaatst;
-        
+
         private Waterskibaan waterskiBaan;
         private WachtrijInstructie wachtrijInstructie;
         private InstructieGroep instructiegroep;
         private WachtrijStarten wachtrijStarten;
 
+        //handlers
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
         public event NieuweBezoekerHandler NieuweBezoeker;
 
@@ -31,21 +33,24 @@ namespace Waterskibaan.Games
 
         public void Initialize()
         {
+            // wanneer event word aangeroepen, start de handler
             NieuweBezoeker += InstructieWachtrijHandler;
             InstructieAfgelopen += InstructieGroepHandler;
             LijnenVerplaatst += LijnVerplaatsHandler;
 
+            // maak alles aan
             waterskiBaan = new Waterskibaan();
             wachtrijInstructie = new WachtrijInstructie();
             instructiegroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
 
+            //timer beheer
             TimerBeheer();
 
             Console.ReadLine();
 
             StopDeTimer();
-            
+
         }
         private void TimerBeheer()
         {
@@ -85,29 +90,32 @@ namespace Waterskibaan.Games
                 LijnenVerplaatst.Invoke();
             }
 
-
+            //secondes erbij, elke een losse anders heb je niet verschillende events, haalt de eerste het altijd terug naar 0
             secondsSinceLastBezoeker++;
             secondsSinceLastInstructie++;
             secondsSinceLijnenVerplaatst++;
 
+            // print de waardes
             Console.WriteLine(waterskiBaan);
             Console.WriteLine(wachtrijInstructie);
             Console.WriteLine(instructiegroep);
             Console.WriteLine(wachtrijStarten);
-            
 
 
-            
+
+
         }
-
+        // maakt een nieuwe sporter aan zonder zwemvest en skies
         private static Sporter NieuweSporterbezoeker()
         {
             return new Sporter();
         }
+        //word toegevoegd aan de instructie wachtrij
         private void InstructieWachtrijHandler(NieuweBezoekerArgs args)
         {
             wachtrijInstructie.SporterNeemPlaatsInRij(args.Sporter);
         }
+        //oude groep instructie eruit en naar start wachtrij en nieuwe groep erin
         private void InstructieGroepHandler(InstructieAfgelopenArgs args)
         {
             foreach (Sporter sport in instructiegroep.GetAlleSporters())
@@ -119,9 +127,12 @@ namespace Waterskibaan.Games
                 instructiegroep.SporterNeemPlaatsInRij(sport);
             }
         }
+        //lijnen worden verplaatst
         private void LijnVerplaatsHandler()
         {
             waterskiBaan.VerplaatsKabel();
+
+            // nieuwe speler toevoegen daar waar nodig
             if (waterskiBaan._kabel.IsStartPositieLeeg())
             {
                 var lijstSporter = wachtrijStarten.SportersVerlatenRij(1);
@@ -132,12 +143,17 @@ namespace Waterskibaan.Games
                     sporter.Zwemvest = new Zwemvest();
                     waterskiBaan.SporterStart(sporter);
                 }
-                
-
             }
+
+            //Move na elke keer verplaatsen dus uit de startpositie leeg.
+            waterskiBaan.MoveUitvoeren();
+            //functie Move
+            //
+
         }
+        
 
 
     }
 }
-//handler aanmaken
+
