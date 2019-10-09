@@ -64,6 +64,8 @@ namespace Waterskibaan
                 if (sporter.Moves.Count > 0 && _random.Next(100) > 75)
                 {
                     sporter.HuidigeMove = sporter.Moves.Last();
+                    IMoves temp = sporter.HuidigeMove;
+                    sporter.AantalbehaaldePunten = sporter.AantalbehaaldePunten + temp.Move();
                     sporter.Moves.RemoveAt(sporter.Moves.Count - 1);
                 }
             }

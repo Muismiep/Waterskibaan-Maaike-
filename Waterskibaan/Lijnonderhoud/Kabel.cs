@@ -55,15 +55,15 @@ namespace Waterskibaan
         {
             var laatstelijn = _lijnen.Last;
 
-                if (laatstelijn != null && laatstelijn.Value.PositieOpDeKabel == 9 && laatstelijn.Value.Sporter.AantalRondenNogTeGaan == 1)
-                {
+            if (laatstelijn != null && laatstelijn.Value.PositieOpDeKabel == 9 && laatstelijn.Value.Sporter.AantalRondenNogTeGaan == 1)
+            {
                 var verwijderdelijn = _lijnen.Last.Value;
-                
+
 
                 _lijnen.RemoveLast();
-                    return verwijderdelijn;
-                }
-            
+                return verwijderdelijn;
+            }
+
             return null;
         }
 

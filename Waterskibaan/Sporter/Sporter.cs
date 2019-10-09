@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    public class Sporter // abstract weg gehaald, blijkbaar moest het toch niet....
+    public class Sporter
     {
         private int aantalRondenNogTeGaan;
         private Zwemvest zwemvest;
