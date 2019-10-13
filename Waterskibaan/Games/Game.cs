@@ -16,10 +16,10 @@ namespace Waterskibaan.Games
         private int secondsSinceLastInstructie;
         private int secondsSinceLijnenVerplaatst;
 
-        private Waterskibaan waterskiBaan;
-        private WachtrijInstructie wachtrijInstructie;
-        private InstructieGroep instructiegroep;
-        private WachtrijStarten wachtrijStarten;
+        internal Waterskibaan waterskiBaan;
+        internal WachtrijInstructie wachtrijInstructie;
+        internal InstructieGroep instructiegroep;
+        internal WachtrijStarten wachtrijStarten;
 
         //handlers
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
@@ -47,9 +47,9 @@ namespace Waterskibaan.Games
             //timer beheer
             TimerBeheer();
 
-            Console.ReadLine();
+           // Console.ReadLine();
 
-            StopDeTimer();
+            //StopDeTimer();
 
         }
         private void TimerBeheer()
@@ -80,7 +80,8 @@ namespace Waterskibaan.Games
                 secondsSinceLastInstructie = 0;
                 InstructieAfgelopen.Invoke(new InstructieAfgelopenArgs
                 {
-                    Sporters = wachtrijInstructie.SportersVerlatenRij(5)
+                    Sporters = wachtrijInstructie.SportersVerlatenRij(5),
+                    SportersInInstructie = instructiegroep.Queue.Count
                 });
 
             }

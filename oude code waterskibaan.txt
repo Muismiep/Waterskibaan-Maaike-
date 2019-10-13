@@ -1,0 +1,18 @@
+<Grid>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="97" Margin="199,0,0,0" VerticalAlignment="Top" Width="370"/>
+        <TextBlock HorizontalAlignment="Left" Margin="276,10,0,0" TextWrapping="Wrap" Text="Wachtende sporters" VerticalAlignment="Top" Width="117"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="66" Margin="199,31,0,0" VerticalAlignment="Top" Width="134"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="66" Margin="333,31,0,0" VerticalAlignment="Top" Width="134"/>
+        <TextBlock HorizontalAlignment="Left" Margin="233,31,0,0" TextWrapping="Wrap" Text="Instructie" VerticalAlignment="Top" Width="59"/>
+        <TextBlock HorizontalAlignment="Left" Margin="384,34,0,0" TextWrapping="Wrap" Text="Starten" VerticalAlignment="Top"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="42" Margin="199,55,0,0" VerticalAlignment="Top" Width="268">
+            <Image Source="./IconsAndPictures/PoppetjesUpdated.png" Stretch="Fill" Margin="79,9,144,11"/>
+        </Border>
+        <TextBlock x:Name="HoeveelheidWachtendenInstructie" HorizontalAlignment="Left" Height="16" Margin="226,67,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="19"/>
+        <TextBlock x:Name="HoeveelheidWachtendeStarten" HorizontalAlignment="Left" Margin="380,67,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="97" Margin="467,0,0,0" VerticalAlignment="Top" Width="102"/>
+        <Canvas Background="SkyBlue" HorizontalAlignment="Left" Height="317" Margin="0,102,0,0" VerticalAlignment="Top" Width="792">
+            <Image Source="./IconsAndPictures/PoppetjesUpdated.png" Stretch="Fill" Height="20" Canvas.Left="406" Canvas.Top="-38" Width="43"/>
+        </Canvas>
+
+    </Grid>

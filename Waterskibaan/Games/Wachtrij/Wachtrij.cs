@@ -10,7 +10,7 @@ namespace Waterskibaan
     public abstract class Wachtrij
     {
         public virtual int MaxLengteRij { get; }
-        protected readonly Queue<Sporter> Queue = new Queue<Sporter>();
+        internal readonly Queue<Sporter> Queue = new Queue<Sporter>();
 
         public void SporterNeemPlaatsInRij(Sporter sporter)
         {

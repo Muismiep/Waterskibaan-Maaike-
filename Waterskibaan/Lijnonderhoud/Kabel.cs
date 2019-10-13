@@ -16,6 +16,7 @@ namespace Waterskibaan
             return _lijnen.First == null || _lijnen.First.Value.PositieOpDeKabel != 0;
 
         }
+
         public void NeemLijnInGebruik(Lijn lijn)
         {
             if (IsStartPositieLeeg())
@@ -25,6 +26,7 @@ namespace Waterskibaan
             }
 
         }
+
         public void VerschuifLijnen()
         {
             var laatsteLijnTerugNaarStart = false;
@@ -51,6 +53,7 @@ namespace Waterskibaan
             }
 
         }
+
         public Lijn VerwijderLijnVanKabel()
         {
             var laatstelijn = _lijnen.Last;

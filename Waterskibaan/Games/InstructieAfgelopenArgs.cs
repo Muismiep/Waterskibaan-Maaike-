@@ -9,5 +9,6 @@ namespace Waterskibaan.Games
     public class InstructieAfgelopenArgs
     {
         public List<Sporter> Sporters { get; set; }
+        public int SportersInInstructie { get; set; }
     }
 }

@@ -5,8 +5,125 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SchermWaterskibaan"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="Waterskibaan" Height="450" Width="800" ResizeMode="NoResize" Topmost="False" Icon="./IconsAndPictures/PoppetjesUpdated.png" >
     <Grid>
-        
+
+        <!-- Spliting window into two predefined columns -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Lijnen voorraad section -->
+        <Grid x:Name="Voorraad" MinWidth="250">
+
+            <!-- Center the lijnen voorraad -->
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="VoorraadCenter" Grid.Row="1" Background="Aqua">
+                <TextBlock Text="Voorraad" 
+                           FontWeight="Bold"
+                           FontSize="16"/>
+                <!-- TODO place voorraad image with lijnen count -->
+            </Grid>
+
+        </Grid>
+
+        <Grid x:Name="RightSide" Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.2*" />
+                <RowDefinition Height="4*" />
+            </Grid.RowDefinitions>
+
+            <!-- Wachtrijen block -->
+            <Grid x:Name="Wachtrijen" Background="Bisque">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Center Wachtrijen block -->
+                <Grid x:Name="WachtrijenContent" Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- wachtende sporters side of wachtrijen block -->
+                    <Grid x:Name="WachtendeSporters">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="2*" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <!-- title -->
+                        <Grid x:Name="WachtendeSportersTitle" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                            <TextBlock Text="Wachtende Sporters"
+                                       FontFamily="Bold"
+                                       FontSize="24"/>
+                        </Grid>
+
+                        <!-- wachtende voor instructie -->
+                        <Grid x:Name="WachtendeSportersInstructie" Grid.Row="1" Grid.Column="0">
+                            <TextBlock Text="Instructie"/>
+                            <!-- The group image -->
+                            <Image Source="/IconsAndPictures/group.png"
+                                   Width="80"
+                                   Margin="-50,-20,0,0" />
+                            <TextBlock Text="{Binding InstructieWachtende, Mode=OneWay}"
+                                       FontFamily="Bold"
+                                       FontSize="22"
+                                       Margin="0,75,0,0"/>
+                        </Grid>
+
+                        <!-- wachtende voor starten -->
+                        <Grid x:Name="WachtendeSportersStarten" Grid.Row="1" Grid.Column="1">
+                            <TextBlock Text="Starten"/>
+                            <!-- The group image -->
+                            <Image Source="/IconsAndPictures/group.png"
+                                   Width="80"
+                                   Margin="-50,-20,0,0" />
+                            <TextBlock Text="{Binding WachtenOpStarten, Mode=OneWay}"
+                                       FontFamily="Bold"
+                                       FontSize="22"
+                                       Margin="0,75,0,0"/>
+                        </Grid>
+                    </Grid>
+
+                    <!-- Instructiegroep side of wachtrijen block -->
+                    <Grid x:Name="InstructieGroep" Grid.Column="1" Margin="25,0,0,0">
+                        <TextBlock Text="Instructiegroep" 
+                                   FontFamily="Bold"
+                                   FontSize="24"/>
+                        <!-- The instruction image -->
+                        <Image Source="/IconsAndPictures/instruction.png"
+                               Width="115"
+                               Margin="0,30,0,0" />
+                        <TextBlock
+                                   FontWeight="Bold"
+                                   FontSize="28"
+                                   Margin="95,50,0,0"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <!-- Waterskibaan -->
+            <Grid x:Name="Baan" Grid.Row="1" Background="WhiteSmoke">
+
+            </Grid>
+        </Grid>
     </Grid>
 </Window>
