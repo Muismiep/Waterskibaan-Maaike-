@@ -28,16 +28,23 @@ namespace SchermWaterskibaan
         public int InstructieWachtende { get; set; }
         public int Instructiehoeveelheid { get; set; }
         public int WachtenOpStarten { get; set; }
+        public List<DisplayLijn> DisplayLijnen { get; set; }
+        public IList<bool> LijnPositieZichtbaarheid { get; set; }
+
+
+        public int Lijnenvoorraad { get; set; } //TODO if lijnenvoorraad < 5 color red, want kunnen niet meer dan 10 lijnen op de baan
 
         public MainWindow()
         {
             InitializeComponent();
+            SetupDefaultLijnen();
 
             // functies aanroepen
             var game = new Game();
             game.NieuweBezoeker += WPF_NieuweBezoeker;
+            game.LijnenVerplaatst += WPF_LijnenVerplaatst;
             game.InstructieAfgelopen += WPF_InstructieAfgelopen;
-            
+            //Lijnenvoorraad = 
             game.Initialize();
 
         }
@@ -46,6 +53,7 @@ namespace SchermWaterskibaan
         {
             InstructieWachtende++;
         }
+        private void WPF_LijnenVerplaatst( args)
         private void WPF_InstructieAfgelopen(InstructieAfgelopenArgs args)
         {
             var leavingsporters = args.Sporters.Count;

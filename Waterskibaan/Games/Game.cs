@@ -20,6 +20,7 @@ namespace Waterskibaan.Games
         internal WachtrijInstructie wachtrijInstructie;
         internal InstructieGroep instructiegroep;
         internal WachtrijStarten wachtrijStarten;
+        public Logger loggerlijst { get; set; }
 
         //handlers
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
@@ -31,26 +32,23 @@ namespace Waterskibaan.Games
         public delegate void LijnenVerplaatsenHandler();
         public event LijnenVerplaatsenHandler LijnenVerplaatst;
 
-        public void Initialize()
+        public Game()
         {
-            // wanneer event word aangeroepen, start de handler
-            NieuweBezoeker += InstructieWachtrijHandler;
-            InstructieAfgelopen += InstructieGroepHandler;
-            LijnenVerplaatst += LijnVerplaatsHandler;
-
-            // maak alles aan
             waterskiBaan = new Waterskibaan();
+
             wachtrijInstructie = new WachtrijInstructie();
             instructiegroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
 
-            //timer beheer
+            loggerlijst = new Logger();
+
+            NieuweBezoeker += InstructieWachtrijHandler;
+            InstructieAfgelopen += InstructieGroepHandler;
+            LijnenVerplaatst += LijnVerplaatsHandler;
+        }
+        public void Initialize()
+        {
             TimerBeheer();
-
-           // Console.ReadLine();
-
-            //StopDeTimer();
-
         }
         private void TimerBeheer()
         {
@@ -73,6 +71,7 @@ namespace Waterskibaan.Games
                 Sporter sporter = NieuweSporterbezoeker();
                 secondsSinceLastBezoeker = 0;
                 NieuweBezoeker?.Invoke(new NieuweBezoekerArgs { Sporter = sporter });
+                
             }
 
             if (secondsSinceLastInstructie > 20) // elke 20 seconden nieuwe instructiegroep
@@ -115,6 +114,7 @@ namespace Waterskibaan.Games
         private void InstructieWachtrijHandler(NieuweBezoekerArgs args)
         {
             wachtrijInstructie.SporterNeemPlaatsInRij(args.Sporter);
+            loggerlijst.PleurtroepInMijnLijst(args.Sporter);
         }
         //oude groep instructie eruit en naar start wachtrij en nieuwe groep erin
         private void InstructieGroepHandler(InstructieAfgelopenArgs args)
@@ -143,6 +143,7 @@ namespace Waterskibaan.Games
                     sporter.Skies = new Skies();
                     sporter.Zwemvest = new Zwemvest();
                     waterskiBaan.SporterStart(sporter);
+                    loggerlijst.AantaluitsloverRondjes(sporter.AantalRondenNogTeGaan);
                 }
             }
 

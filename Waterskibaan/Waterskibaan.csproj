@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Games\Game.cs" />
     <Compile Include="Games\InstructieAfgelopenArgs.cs" />
+    <Compile Include="Games\Logger.cs" />
     <Compile Include="Moves\IMoves.cs" />
     <Compile Include="Games\Wachtrij\InstructieGroep.cs" />
     <Compile Include="Lijnonderhoud\Kabel.cs" />

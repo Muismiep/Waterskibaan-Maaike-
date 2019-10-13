@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SchermWaterskibaan"
         mc:Ignorable="d"
         DataContext="{Binding RelativeSource={RelativeSource Self}}"
-        Title="Waterskibaan" Height="450" Width="800" ResizeMode="NoResize" Topmost="False" Icon="./IconsAndPictures/PoppetjesUpdated.png" >
+        Title="Waterskibaan" Height="720" Width="1280" Icon="./IconsAndPictures/PoppetjesUpdated.png" MinWidth="800" MinHeight="600" >
     <Grid>
 
         <!-- Spliting window into two predefined columns -->
@@ -15,6 +15,14 @@
             <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
 
+        <Grid x:Name="LogoWaterskibaan" MinWidth="150">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid x:Name="Logo"/>
+        </Grid>
         <!-- Lijnen voorraad section -->
         <Grid x:Name="Voorraad" MinWidth="250">
 
@@ -25,10 +33,16 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Grid x:Name="VoorraadCenter" Grid.Row="1" Background="Aqua">
-                <TextBlock Text="Voorraad" 
+            <Grid x:Name="VoorraadCenter" Grid.Row="1">
+                <StackPanel x:Name = "myPanel">
+                    <TextBlock Text="Voorraad"  Background="Aqua" 
                            FontWeight="Bold"
                            FontSize="16"/>
+                    <TextBlock Text="{Binding Lijnenvoorraad, Mode=OneWay}"  Background="LightGreen"
+                           FontFamily="Bold"
+                           FontSize="22"
+                           Margin="0,0,0,0"/>
+                </StackPanel>
                 <!-- TODO place voorraad image with lijnen count -->
             </Grid>
 
@@ -78,52 +92,276 @@
 
                         <!-- wachtende voor instructie -->
                         <Grid x:Name="WachtendeSportersInstructie" Grid.Row="1" Grid.Column="0">
-                            <TextBlock Text="Instructie"/>
-                            <!-- The group image -->
-                            <Image Source="/IconsAndPictures/group.png"
-                                   Width="80"
-                                   Margin="-50,-20,0,0" />
-                            <TextBlock Text="{Binding InstructieWachtende, Mode=OneWay}"
-                                       FontFamily="Bold"
-                                       FontSize="22"
-                                       Margin="0,75,0,0"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Instructie" Margin="5,0,0,0"/>
+                                <!-- The group image -->
+                                <Image Source="/IconsAndPictures/group.png"
+                                       Width="80"
+                                       Margin="-50,-20,0,0" />
+                                <TextBlock Text="{Binding InstructieWachtende, Mode=OneWay}"
+                                           FontFamily="Bold"
+                                           FontSize="22"
+                                           Margin="20,-20,0,0"/>
+                            </StackPanel>
                         </Grid>
+
 
                         <!-- wachtende voor starten -->
                         <Grid x:Name="WachtendeSportersStarten" Grid.Row="1" Grid.Column="1">
-                            <TextBlock Text="Starten"/>
-                            <!-- The group image -->
-                            <Image Source="/IconsAndPictures/group.png"
-                                   Width="80"
-                                   Margin="-50,-20,0,0" />
-                            <TextBlock Text="{Binding WachtenOpStarten, Mode=OneWay}"
-                                       FontFamily="Bold"
-                                       FontSize="22"
-                                       Margin="0,75,0,0"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="Starten" Margin="10,0,0,0"/>
+                                <!-- The group image -->
+                                <Image Source="/IconsAndPictures/group.png"
+                                       Width="80"
+                                       Margin="-50,-20,0,0" />
+                                <TextBlock Text="{Binding WachtenOpStarten, Mode=OneWay}"
+                                           FontFamily="Bold"
+                                           FontSize="22"
+                                           Margin="20,-20,0,0"/>
+                            </StackPanel>
                         </Grid>
+
                     </Grid>
 
                     <!-- Instructiegroep side of wachtrijen block -->
                     <Grid x:Name="InstructieGroep" Grid.Column="1" Margin="25,0,0,0">
-                        <TextBlock Text="Instructiegroep" 
-                                   FontFamily="Bold"
-                                   FontSize="24"/>
-                        <!-- The instruction image -->
-                        <Image Source="/IconsAndPictures/instruction.png"
-                               Width="115"
-                               Margin="0,30,0,0" />
-                        <TextBlock
-                                   FontWeight="Bold"
-                                   FontSize="28"
-                                   Margin="95,50,0,0"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Instructiegroep" 
+                                       FontFamily="Bold"
+                                       FontSize="24"/>
+                            <!-- The instruction image -->
+                            <Image Source="/IconsAndPictures/instruction.png"
+                                   Width="115"/>
+                            <TextBlock Text="{Binding Instructiehoeveelheid, Mode=TwoWay}"
+                                       FontWeight="Bold"
+                                       FontSize="28"
+                                       Margin="95,-100,0,0"/>
+                        </StackPanel>
                     </Grid>
+
                 </Grid>
             </Grid>
 
             <!-- Waterskibaan -->
-            <Grid x:Name="Baan" Grid.Row="1" Background="WhiteSmoke">
+            <Border BorderBrush="Black" BorderThickness="2,2,0,0" Grid.Row="1">
+                <Grid x:Name="Baan"  Background="DodgerBlue">
+                    <!-- Outer rows are used as spacers -->
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            </Grid>
+                    <Grid x:Name="Positie10" Grid.Column="1" Visibility="{Binding LijnPositieZichtbaarheid[9], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="10"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[9].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie9" Grid.Column="2" Visibility="{Binding LijnPositieZichtbaarheid[8], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="9"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[8].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie1" Grid.Column="3" Visibility="{Binding LijnPositieZichtbaarheid[0], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="1"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[0].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie8" Grid.Column="4" Visibility="{Binding LijnPositieZichtbaarheid[7], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="8"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[7].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie2" Grid.Column="5" Visibility="{Binding LijnPositieZichtbaarheid[1], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="2"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[1].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie7" Grid.Column="6" Visibility="{Binding LijnPositieZichtbaarheid[6], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="7"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[6].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie3" Grid.Column="7" Visibility="{Binding LijnPositieZichtbaarheid[2], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="0.5*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="3"
+                                       FontSize="24"
+                                       Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[2].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie6" Grid.Column="8" Visibility="{Binding LijnPositieZichtbaarheid[5], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="6"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[5].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie4" Grid.Column="9" Visibility="{Binding LijnPositieZichtbaarheid[3], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="3">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="4"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[3].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid x:Name="Positie5" Grid.Column="10" Visibility="{Binding LijnPositieZichtbaarheid[4], Mode=TwoWay, Converter={StaticResource BooleanToVisibilityConverter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1">
+                            <Rectangle Width="3" Height="120" Fill="Black"/>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Text="5"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                                <TextBlock Text="{Binding DisplayLijnen[4].LijnNummer, StringFormat='#{0}'}"
+                                           Foreground="WhiteSmoke"
+                                           FontSize="24"
+                                           Margin="10,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Border>
+
         </Grid>
     </Grid>
 </Window>
