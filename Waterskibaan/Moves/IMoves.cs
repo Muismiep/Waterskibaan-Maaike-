@@ -1,14 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */
 
 namespace Waterskibaan
 {
     public interface IMoves
     {
         int Move();
+
+        string Naam();
     }
 }

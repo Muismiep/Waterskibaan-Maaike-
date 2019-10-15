@@ -1,20 +1,20 @@
-﻿using System;
+﻿/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
     public static class MoveCollection
     {
-        private static List<IMoves> Moves = new List<IMoves>()
-        {
-            new Springen(), new OpEenBeen(), new Salto()
-        };
-
         public static List<IMoves> GetWillekeurigeMoves()
         {
+            List<IMoves> Moves = new List<IMoves>() {new Springen(), new OpEenBeen(), new Salto(), new Achteruit(), new DoorJeKnieën(), new ÉenHand()};
             var LijstmetBewegingen = new List<IMoves>();
             var random = new Random();
             var aantalbewegingen = random.Next(1, Moves.Count + 1);
@@ -25,8 +25,6 @@ namespace Waterskibaan
             }
 
             return LijstmetBewegingen;
-
-
         }
     }
 }

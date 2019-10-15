@@ -13,18 +13,17 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    class OpEenBeen : IMoves
+    class DoorJeKnieën : IMoves
     {
-        public int Move() => new Random().Next(100) > 40 ? 10 : 0;
+        public int Move() => new Random().Next(100) > 30 ? 7 : 0;
 
         public string Naam()
         {
             return ToString();
         }
-
         public override string ToString()
         {
-            return "Op Een Been";
+            return "Door je knieën";
         }
     }
 }

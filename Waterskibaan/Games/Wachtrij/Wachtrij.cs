@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +29,15 @@ namespace Waterskibaan
 
         public List<Sporter> GetAlleSporters()
         {
-            return Queue.ToList();
+            var sporters = new List<Sporter>();
+
+            while (Queue.Count > 0)
+            {
+                sporters.Add(Queue.Dequeue());
+            }
+
+            return sporters;
+
         }
 
         public List<Sporter> SportersVerlatenRij(int amount)

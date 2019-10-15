@@ -1,9 +1,13 @@
-﻿using System;
+﻿/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Waterskibaan
@@ -61,8 +65,7 @@ namespace Waterskibaan
             var rand = new Random();
 
             // tijdelijke oplossing, word vervangen in opdracht 13
-            Kledingkleur = Color.FromArgb((byte)rand.Next(255), (byte)rand.Next(255), (byte)rand.Next(255));
-
+           Kledingkleur = Color.FromArgb(rand.Next(255), rand.Next(255), rand.Next(255));
         }
     }
 }

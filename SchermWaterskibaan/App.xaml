@@ -1,9 +1,19 @@
-﻿<Application x:Class="SchermWaterskibaan.App"
+﻿<!--
+/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */-->
+    <Application x:Class="SchermWaterskibaan.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SchermWaterskibaan"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <local:StringToSolidColorBrushConverter x:Key="StringToSolidColorBrushConverter" />
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
+    

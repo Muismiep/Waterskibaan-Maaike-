@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +15,7 @@ namespace Waterskibaan
 {
     public class Waterskibaan
     {
-        private LijnenVoorraad _lijnenVoorraad;
+        public LijnenVoorraad _lijnenVoorraad;
         public Kabel _kabel = new Kabel();
         private Random _random = new Random();
 
@@ -18,7 +25,7 @@ namespace Waterskibaan
 
             for (int i = 0; i < 15; i++)
             {
-                _lijnenVoorraad.LijnToevoegenAanRij(new Lijn());
+                _lijnenVoorraad.LijnToevoegenAanRij(new Lijn(i + 1));
             }
         }
 
@@ -31,9 +38,10 @@ namespace Waterskibaan
 
             if (_kabel.IsStartPositieLeeg() == true)
             {
-                var rand = new Random();
+/*              var rand = new Random();
                 int aantalRondjes = rand.Next(1, 3);
                 sp.AantalRondenNogTeGaan = aantalRondjes;
+*/
                 var getLijn = _lijnenVoorraad.VerwijderEersteLijn();
 
                 getLijn.Sporter = sp;
@@ -61,12 +69,15 @@ namespace Waterskibaan
             {
                 var sporter = lijn.Sporter;
 
-                if (sporter.Moves.Count > 0 && _random.Next(100) > 75)
+                if (sporter.Moves.Count > 0 && _random.Next(100) > 75) 
                 {
                     sporter.HuidigeMove = sporter.Moves.Last();
-                    IMoves temp = sporter.HuidigeMove;
-                    sporter.AantalbehaaldePunten = sporter.AantalbehaaldePunten + temp.Move();
+                    sporter.AantalbehaaldePunten += sporter.HuidigeMove.Move();
                     sporter.Moves.RemoveAt(sporter.Moves.Count - 1);
+                }
+                else
+                {
+                    sporter.HuidigeMove = null;
                 }
             }
         }

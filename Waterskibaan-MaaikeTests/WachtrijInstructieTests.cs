@@ -1,4 +1,11 @@
-﻿/*using System;
+﻿/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */
+
+/*using System;
 using System.Collections.Generic;
 using System.Text;
 using Xunit;

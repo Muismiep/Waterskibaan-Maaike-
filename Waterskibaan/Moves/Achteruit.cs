@@ -13,14 +13,17 @@ using System.Threading.Tasks;
 
 namespace Waterskibaan
 {
-    public class Lijn
+    class Achteruit : IMoves
     {
-        public int PositieOpDeKabel;
-        public Sporter Sporter { get; set; }
-        public int LijnNummer { get; set; }
-        public Lijn(int lijnNummer)
+        public int Move() => new Random().Next(100) > 50 ? 5 : 0;
+
+        public string Naam()
         {
-            LijnNummer = lijnNummer;
+            return ToString();
+        }
+        public override string ToString()
+        {
+            return "Achteruit";
         }
     }
 }

@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -61,6 +68,7 @@ namespace Waterskibaan
             if (laatstelijn != null && laatstelijn.Value.PositieOpDeKabel == 9 && laatstelijn.Value.Sporter.AantalRondenNogTeGaan == 1)
             {
                 var verwijderdelijn = _lijnen.Last.Value;
+                verwijderdelijn.Sporter = null;
 
 
                 _lijnen.RemoveLast();

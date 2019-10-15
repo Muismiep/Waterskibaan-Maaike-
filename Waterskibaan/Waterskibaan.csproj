@@ -47,6 +47,9 @@
     <Compile Include="Games\Game.cs" />
     <Compile Include="Games\InstructieAfgelopenArgs.cs" />
     <Compile Include="Games\Logger.cs" />
+    <Compile Include="Games\VerplaatsLijnenArgs.cs" />
+    <Compile Include="Moves\Achteruit.cs" />
+    <Compile Include="Moves\DoorJeKnieën.cs" />
     <Compile Include="Moves\IMoves.cs" />
     <Compile Include="Games\Wachtrij\InstructieGroep.cs" />
     <Compile Include="Lijnonderhoud\Kabel.cs" />
@@ -56,6 +59,7 @@
     <Compile Include="Games\NieuweBezoekerArgs.cs" />
     <Compile Include="Moves\OpEenBeen.cs" />
     <Compile Include="Moves\Salto.cs" />
+    <Compile Include="Moves\ÉenHand.cs" />
     <Compile Include="Sporter\Skies.cs" />
     <Compile Include="Sporter\Sporter.cs" />
     <Compile Include="Program.cs" />

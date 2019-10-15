@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Waterskibaan Project
+ * Door: Maaike van der Jagt
+ * ICTSE1a
+ * 2019
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +28,7 @@ namespace Waterskibaan.Games
         internal InstructieGroep instructiegroep;
         internal WachtrijStarten wachtrijStarten;
         public Logger loggerlijst { get; set; }
+        private Random _random = new Random();
 
         //handlers
         public delegate void NieuweBezoekerHandler(NieuweBezoekerArgs args);
@@ -29,7 +37,7 @@ namespace Waterskibaan.Games
         public delegate void InstructieAfgelopenHandler(InstructieAfgelopenArgs args);
         public event InstructieAfgelopenHandler InstructieAfgelopen;
 
-        public delegate void LijnenVerplaatsenHandler();
+        public delegate void LijnenVerplaatsenHandler(VerplaatsLijnenArgs args);
         public event LijnenVerplaatsenHandler LijnenVerplaatst;
 
         public Game()
@@ -40,7 +48,7 @@ namespace Waterskibaan.Games
             instructiegroep = new InstructieGroep();
             wachtrijStarten = new WachtrijStarten();
 
-            loggerlijst = new Logger();
+            loggerlijst = new Logger(waterskiBaan._kabel);
 
             NieuweBezoeker += InstructieWachtrijHandler;
             InstructieAfgelopen += InstructieGroepHandler;
@@ -54,7 +62,7 @@ namespace Waterskibaan.Games
         {
             gameTimer = new Timer(1000);
             gameTimer.Elapsed += VoegSporterToe;
-            gameTimer.AutoReset = true;
+            gameTimer.AutoReset = false;
             gameTimer.Enabled = true;
         }
 
@@ -80,14 +88,15 @@ namespace Waterskibaan.Games
                 InstructieAfgelopen.Invoke(new InstructieAfgelopenArgs
                 {
                     Sporters = wachtrijInstructie.SportersVerlatenRij(5),
-                    SportersInInstructie = instructiegroep.Queue.Count
+                    SportersInInstructie = instructiegroep.Queue.Count,
+                    SportersKlaarVoorStart = wachtrijStarten.Queue.Count
                 });
 
             }
             if (secondsSinceLijnenVerplaatst > 4)
             {
                 secondsSinceLijnenVerplaatst = 0;
-                LijnenVerplaatst.Invoke();
+                LijnenVerplaatst.Invoke(new VerplaatsLijnenArgs(waterskiBaan._kabel._lijnen, waterskiBaan._lijnenVoorraad));
             }
 
             //secondes erbij, elke een losse anders heb je niet verschillende events, haalt de eerste het altijd terug naar 0
@@ -103,12 +112,16 @@ namespace Waterskibaan.Games
 
 
 
-
+            gameTimer.Start();
         }
         // maakt een nieuwe sporter aan zonder zwemvest en skies
         private static Sporter NieuweSporterbezoeker()
         {
-            return new Sporter();
+            Sporter sp = new Sporter();
+            var rand = new Random();
+            int aantalRondjes = rand.Next(1, 3);
+            sp.AantalRondenNogTeGaan = aantalRondjes;
+            return sp;
         }
         //word toegevoegd aan de instructie wachtrij
         private void InstructieWachtrijHandler(NieuweBezoekerArgs args)
@@ -129,10 +142,10 @@ namespace Waterskibaan.Games
             }
         }
         //lijnen worden verplaatst
-        private void LijnVerplaatsHandler()
+        private void LijnVerplaatsHandler(VerplaatsLijnenArgs args)
         {
             waterskiBaan.VerplaatsKabel();
-
+            args.SportersKlaarVoorStart = wachtrijStarten.Queue.Count;
             // nieuwe speler toevoegen daar waar nodig
             if (waterskiBaan._kabel.IsStartPositieLeeg())
             {
@@ -143,7 +156,7 @@ namespace Waterskibaan.Games
                     sporter.Skies = new Skies();
                     sporter.Zwemvest = new Zwemvest();
                     waterskiBaan.SporterStart(sporter);
-                    loggerlijst.AantaluitsloverRondjes(sporter.AantalRondenNogTeGaan);
+                    args.SportersKlaarVoorStart--;
                 }
             }
 
