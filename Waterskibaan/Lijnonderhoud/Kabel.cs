@@ -81,16 +81,16 @@ namespace Waterskibaan
 
         private string printLijst()
         {
-            string banaan = "";
+            string kabellijst = "";
             foreach (Lijn lijn in _lijnen)
             {
-                banaan = banaan + lijn.PositieOpDeKabel + "|";
+                kabellijst = kabellijst + lijn.PositieOpDeKabel + "|";
             }
-            if (banaan.Length > 0)
+            if (kabellijst.Length > 0)
             {
-                banaan = banaan.Remove(banaan.Length - 1);
+                kabellijst = kabellijst.Remove(kabellijst.Length - 1);
             }
-            return banaan;
+            return kabellijst;
 
         }
 

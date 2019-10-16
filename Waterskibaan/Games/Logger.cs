@@ -66,12 +66,12 @@ namespace Waterskibaan.Games
 
         public string PrintGedeelte()
         {
-            String pruim = "";
-            foreach (var pitje in Logging)
+            String zin = "";
+            foreach (var letter in Logging)
             {
-                pruim += pitje.ToString();
+                zin += letter.ToString();
             }
-            return pruim;
+            return zin;
         }
         private static bool IsColorRed(Color a)
         {
