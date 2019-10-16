@@ -143,13 +143,13 @@ namespace SchermWaterskibaan
                 HoogstBehaaldeScore = hoogstBehaaldeScore;
             }
 
-            var totaalBezoekersInRodeKleding = _logger.TelrodeUitslovers();
+            var totaalBezoekersInRodeKleding = _logger.TelrodeSporters();
             if (totaalBezoekersInRodeKleding != BezoekersInRodeKleding)
             {
                 BezoekersInRodeKleding = totaalBezoekersInRodeKleding;
             }
 
-            var totaalAantalRondjes = _logger.AantaluitsloverRondjes();
+            var totaalAantalRondjes = _logger.TotaalAantalRondjes();
             if (totaalAantalRondjes != AantalRondjesTotaal)
             {
                 AantalRondjesTotaal = totaalAantalRondjes;
@@ -163,7 +163,7 @@ namespace SchermWaterskibaan
 
             
 
-            var tienlichste = _logger.TienLichtsteKleurendinges();
+            var tienlichste = _logger.TienLichtsteKleuren();
             var nieuweKleuren = new List<Color>();
             foreach(var kleur in tienlichste)
             {

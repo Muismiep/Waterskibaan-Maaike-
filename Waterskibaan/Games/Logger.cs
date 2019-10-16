@@ -26,7 +26,7 @@ namespace Waterskibaan.Games
             _kabellogger = kabel;
         }
 
-        public void PleurtroepInMijnLijst(Sporter sp)
+        public void GooiSportersinLijst(Sporter sp)
         {
             Logging.Add(sp);
             AantalRondjesTotaal += sp.AantalRondenNogTeGaan;
@@ -40,17 +40,17 @@ namespace Waterskibaan.Games
         {
             return Logging.Max(s => s.AantalbehaaldePunten);
         }
-        public int TelrodeUitslovers()
+        public int TelrodeSporters()
         {
             return Logging.Count(b => IsColorRed(b.Kledingkleur));
 
         }
-        public int AantaluitsloverRondjes()
+        public int TotaalAantalRondjes()
         {
             return AantalRondjesTotaal;
         }
 
-        public List<Color> TienLichtsteKleurendinges()
+        public List<Color> TienLichtsteKleuren()
         {
             return Logging.OrderByDescending(s => GetColorSize(s.Kledingkleur)).Select(s => s.Kledingkleur).Take(10).ToList();
         }

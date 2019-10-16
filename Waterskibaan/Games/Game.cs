@@ -127,7 +127,7 @@ namespace Waterskibaan.Games
         private void InstructieWachtrijHandler(NieuweBezoekerArgs args)
         {
             wachtrijInstructie.SporterNeemPlaatsInRij(args.Sporter);
-            loggerlijst.PleurtroepInMijnLijst(args.Sporter);
+            loggerlijst.GooiSportersinLijst(args.Sporter);
         }
         //oude groep instructie eruit en naar start wachtrij en nieuwe groep erin
         private void InstructieGroepHandler(InstructieAfgelopenArgs args)
@@ -162,8 +162,7 @@ namespace Waterskibaan.Games
 
             //Move na elke keer verplaatsen dus uit de startpositie leeg.
             waterskiBaan.MoveUitvoeren();
-            //functie Move
-            //
+            
 
         }
         
